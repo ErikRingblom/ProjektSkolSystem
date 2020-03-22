@@ -10,8 +10,8 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author rimazivkovic
+ * 
+ * @author rimazivkovic 
  */
 public class LoginFrame extends javax.swing.JFrame {
 
