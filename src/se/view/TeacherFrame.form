@@ -50,9 +50,11 @@
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="ff" green="ff" red="ff" type="rgb"/>
+
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="bb" green="bb" red="bb" type="rgb"/>
+
         </Property>
       </Properties>
 
@@ -302,7 +304,10 @@
     <Container class="javax.swing.JPanel" name="jPanel2">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="66" red="ff" type="rgb"/>
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="41" green="3f" red="3c" type="rgb"/>
         </Property>
       </Properties>
 
@@ -379,7 +384,9 @@
                       <Component id="passwordLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="passwordField" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
+
                   <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
+
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="AddStudentButton" linkSize="7" alignment="3" min="-2" pref="45" max="-2" attributes="0"/>
                       <Component id="saveUpdateButton" linkSize="7" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -407,7 +414,7 @@
               <Font name="Lucida Grande" size="16" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+              <Color blue="41" green="3f" red="3c" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Email: "/>
           </Properties>
@@ -418,7 +425,7 @@
               <Font name="Lucida Grande" size="16" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+              <Color blue="41" green="3f" red="3c" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Efternamn:"/>
           </Properties>
@@ -429,7 +436,7 @@
               <Font name="Lucida Grande" size="16" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+              <Color blue="41" green="3f" red="3c" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="F&#xf6;rnamn:"/>
           </Properties>
@@ -450,7 +457,7 @@
               <Font name="Lucida Grande" size="16" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+              <Color blue="41" green="3f" red="3c" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Anv&#xe4;ndarnamn:"/>
           </Properties>
@@ -489,7 +496,7 @@
               <Font name="Lucida Grande" size="16" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+              <Color blue="41" green="3f" red="3c" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="L&#xf6;senord:"/>
           </Properties>
@@ -500,7 +507,7 @@
               <Font name="Lucida Grande" size="18" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+              <Color blue="41" green="3f" red="3c" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="L&#xe4;gg till ny student"/>
           </Properties>

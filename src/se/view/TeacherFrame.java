@@ -76,6 +76,7 @@ public class TeacherFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+
         jPanel4.setForeground(new java.awt.Color(187, 187, 187));
 
         jTable2.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
@@ -206,7 +207,8 @@ public class TeacherFrame extends javax.swing.JFrame {
                 .addContainerGap(9, Short.MAX_VALUE))
         );
 
-        jPanel2.setBackground(new java.awt.Color(255, 102, 0));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setForeground(new java.awt.Color(60, 63, 65));
 
         AddStudentButton.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
         AddStudentButton.setText("Lägg till");
@@ -217,15 +219,15 @@ public class TeacherFrame extends javax.swing.JFrame {
         });
 
         emailLabel.setFont(new java.awt.Font("Lucida Grande", 1, 16)); // NOI18N
-        emailLabel.setForeground(new java.awt.Color(255, 255, 255));
+        emailLabel.setForeground(new java.awt.Color(60, 63, 65));
         emailLabel.setText("Email: ");
 
         lastnameLabel.setFont(new java.awt.Font("Lucida Grande", 1, 16)); // NOI18N
-        lastnameLabel.setForeground(new java.awt.Color(255, 255, 255));
+        lastnameLabel.setForeground(new java.awt.Color(60, 63, 65));
         lastnameLabel.setText("Efternamn:");
 
         namejLabel.setFont(new java.awt.Font("Lucida Grande", 1, 16)); // NOI18N
-        namejLabel.setForeground(new java.awt.Color(255, 255, 255));
+        namejLabel.setForeground(new java.awt.Color(60, 63, 65));
         namejLabel.setText("Förnamn:");
 
         usernameField.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
@@ -236,7 +238,7 @@ public class TeacherFrame extends javax.swing.JFrame {
         });
 
         usernameLabel.setFont(new java.awt.Font("Lucida Grande", 1, 16)); // NOI18N
-        usernameLabel.setForeground(new java.awt.Color(255, 255, 255));
+        usernameLabel.setForeground(new java.awt.Color(60, 63, 65));
         usernameLabel.setText("Användarnamn:");
 
         passwordField.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
@@ -248,11 +250,11 @@ public class TeacherFrame extends javax.swing.JFrame {
         lastnameField.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
 
         passwordLabel.setFont(new java.awt.Font("Lucida Grande", 1, 16)); // NOI18N
-        passwordLabel.setForeground(new java.awt.Color(255, 255, 255));
+        passwordLabel.setForeground(new java.awt.Color(60, 63, 65));
         passwordLabel.setText("Lösenord:");
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setForeground(new java.awt.Color(60, 63, 65));
         jLabel3.setText("Lägg till ny student");
 
         saveUpdateButton.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
@@ -320,7 +322,9 @@ public class TeacherFrame extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(passwordLabel)
                     .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    
                 .addGap(67, 67, 67)
+
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AddStudentButton, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(saveUpdateButton))
