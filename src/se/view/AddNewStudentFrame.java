@@ -28,6 +28,7 @@ public class AddNewStudentFrame extends javax.swing.JFrame {
     /**
      * Creates new form StudentUpdateFrame
      */
+    @SuppressWarnings("OverridableMethodCallInConstructor")
     public AddNewStudentFrame() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -250,8 +251,8 @@ public class AddNewStudentFrame extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel6))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -368,7 +369,12 @@ public class AddNewStudentFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_match1ACheckBox1ActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        insert();
+        String firstname = fNameField.getText();
+        String lastname = lNameField.getText();
+        String username = uNameField.getText();
+        String email = mailField.getText();
+        String password = pwField.getText();
+        insert(firstname, lastname, username, email, password);
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
@@ -384,16 +390,10 @@ public class AddNewStudentFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_match2bCheckBoxActionPerformed
 
     
-     public int insert() {
+     public int insert(String firstname, String lastname, String username, String email, String password) {
         
         int idStudent = 0;
-        
-         String firstname = fNameField.getText();
-         String lastname = lNameField.getText();
-         String username = uNameField.getText();
-         String email = mailField.getText();
-         String password = pwField.getText();
-
+      
          if (firstname.equals("")) {
              JOptionPane.showMessageDialog(null, "Skriv in ditt förnamn!");
          } else if (lastname.equals("")) {
@@ -422,7 +422,7 @@ public class AddNewStudentFrame extends javax.swing.JFrame {
                 rs = ps.getGeneratedKeys();
                 if (rs.next()) {
                     idStudent = rs.getInt(1);
-                    JOptionPane.showMessageDialog(null, "En ny student har registrerats!");
+                    JOptionPane.showMessageDialog(null, firstname + " " + lastname + " har registrerats! I väntan på godkännande!");
                 }
             }
      

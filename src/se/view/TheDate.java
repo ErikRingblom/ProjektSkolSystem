@@ -8,14 +8,13 @@ import java.util.Date;
  * @author rimazivkovic
  */
 public class TheDate {
-
     private String theDate;
 
-    public String showDate() {
+   public String showDate() {
 
         Date date = new Date();
-        SimpleDateFormat s = new SimpleDateFormat("yyyy-MM-dd  HH:mm");
+        SimpleDateFormat s = new SimpleDateFormat("yyyy-MM-dd  hh:mm");
         this.theDate = s.format(date);
         return theDate;
-    }
+    }  
 }

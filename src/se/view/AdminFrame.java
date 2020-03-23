@@ -43,7 +43,6 @@ public class AdminFrame extends javax.swing.JFrame {
         dateLabel.setText(date);
     }
     
-
     private void getInfo(String person) {
 
         if (student.equals(person)) {
@@ -176,7 +175,8 @@ public class AdminFrame extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jTable1);
 
-        jLabel8.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Klicka på person information för att hantera ");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
