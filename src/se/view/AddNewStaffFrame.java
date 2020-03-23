@@ -1,5 +1,13 @@
-
 package se.view;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -7,11 +15,16 @@ package se.view;
  */
 public class AddNewStaffFrame extends javax.swing.JFrame {
 
-   
+    String query = null;
+    Connection con = null;
+    ResultSet rs = null;
+    PreparedStatement ps = null;
+
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public AddNewStaffFrame() {
         initComponents();
         this.setLocationRelativeTo(null);
+        con = MyConnection.getConnection();
     }
 
     /**
@@ -236,6 +249,13 @@ public class AddNewStaffFrame extends javax.swing.JFrame {
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         //insert();
+        String Profession = professionField.getText();
+        String firstname = fNameField.getText();
+        String lastname = lNameField.getText();
+        String username = uNameField.getText();
+        String email = mailField.getText();
+        String password = pwField.getText();
+        insert(Profession,firstname, lastname, username, email, password);
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
@@ -299,4 +319,60 @@ public class AddNewStaffFrame extends javax.swing.JFrame {
     public javax.swing.JTextField pwField;
     public javax.swing.JTextField uNameField;
     // End of variables declaration//GEN-END:variables
+
+    private int insert( String Profession, String firstname, String lastname, String username, String email, String password) {
+
+         int idSaff = 0;
+
+        if (firstname.equals("")) {
+            JOptionPane.showMessageDialog(null, "Skriv in ditt förnamn!");
+        } else if (lastname.equals("")) {
+            JOptionPane.showMessageDialog(null, "Skriv in ditt efternamn!");
+        } else if (username.equals("")) {
+            JOptionPane.showMessageDialog(null, "Skriv in ditt användarnamn!");
+        } else if (email.equals("")) {
+            JOptionPane.showMessageDialog(null, "Skriv in ditt email!");
+        } else if (password.equals("")) {
+            JOptionPane.showMessageDialog(null, "Skriv in ditt lösenord!");
+        } else {
+            query = "INSERT INTO `staff`(`Profession`,`Firstname`, `Lastname`, `Username`, `Email`, `Password`) VALUES (?,?,?,?,?,?)";
+        }
+
+        try {
+            ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+
+            ps.setString(1, Profession);
+            ps.setString(2, firstname);
+            ps.setString(3, lastname);
+            ps.setString(4, username);
+            ps.setString(5, email);
+            ps.setString(6, password);
+
+            int update = ps.executeUpdate();
+            if (update == 1) {
+                rs = ps.getGeneratedKeys();
+                if (rs.next()) {
+                    idSaff = rs.getInt(1);
+                    JOptionPane.showMessageDialog(null, firstname + " " + lastname + " har registrerats! I väntan på godkännande!");
+                }
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(RegisterFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                    fNameField.setText("");
+                    lNameField.setText("");
+                    uNameField.setText("");
+                    mailField.setText("");
+                    pwField.setText("");
+                }
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+        return idSaff;
+    }
 }

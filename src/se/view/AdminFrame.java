@@ -146,7 +146,7 @@ public class AdminFrame extends javax.swing.JFrame {
                 .addContainerGap(39, Short.MAX_VALUE))
         );
 
-        jPanel2.setBackground(new java.awt.Color(255, 102, 0));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jTable1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -176,7 +176,7 @@ public class AdminFrame extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTable1);
 
         jLabel8.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setForeground(new java.awt.Color(60, 63, 65));
         jLabel8.setText("Klicka på person information för att hantera ");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -200,7 +200,7 @@ public class AdminFrame extends javax.swing.JFrame {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        jPanel3.setBackground(new java.awt.Color(255, 102, 0));
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         newStudentButton.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
         newStudentButton.setText("Lägg till ny student");
@@ -266,7 +266,7 @@ public class AdminFrame extends javax.swing.JFrame {
 
         jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {addNewAdminButton, addnewTeacherButton, newStudentButton, staffButton});
 
-        jPanel4.setBackground(new java.awt.Color(255, 102, 0));
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
         deleteButton.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
         deleteButton.setText("Radera");
@@ -320,7 +320,7 @@ public class AdminFrame extends javax.swing.JFrame {
                 .addGap(52, 52, 52))
         );
 
-        jPanel5.setBackground(new java.awt.Color(255, 102, 0));
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
         teacherInfoButton.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
         teacherInfoButton.setText("Lärar info");
