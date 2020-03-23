@@ -1,4 +1,3 @@
-
 package se.view;
 
 import java.sql.PreparedStatement;
@@ -17,7 +16,7 @@ public class RegisterFrame extends javax.swing.JFrame {
 
     TheDate dt = new TheDate();
     private String dateTime;
-    
+
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public RegisterFrame() {
         initComponents();
@@ -253,7 +252,7 @@ public class RegisterFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
-        insert();     
+        insert();
     }//GEN-LAST:event_registerButtonActionPerformed
 
     private void emailFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailFieldActionPerformed
@@ -269,15 +268,15 @@ public class RegisterFrame extends javax.swing.JFrame {
         LoginFrame lf = new LoginFrame();
         lf.setVisible(true);
     }//GEN-LAST:event_jLabel9MouseClicked
-    
+
     public int insert() {
-        
+
         String firstname = firstnameField.getText();
         String lastname = lastnameField.getText();
         String username = usernameField.getText();
-        String  email = emailField.getText();
+        String email = emailField.getText();
         String password = String.valueOf(passwordField.getPassword());
-       
+
         if (firstname.equals("")) {
             JOptionPane.showMessageDialog(null, "Skriv in ditt förnamn!");
         } else if (lastname.equals("")) {
@@ -289,30 +288,32 @@ public class RegisterFrame extends javax.swing.JFrame {
         } else if (password.equals("")) {
             JOptionPane.showMessageDialog(null, "Skriv in ditt lösenord!");
         }else{
-        
+
         ResultSet rs = null;
         String query = null;
         int idStudent = 0;
         String title = jComboBox1.getSelectedItem().toString();
-        
-        if(null != title)switch (title) {
-            case "Student":
-                query =  "INSERT INTO `Student`(`Firstname`, `Lastname`, `Username`, `Email`, `Password`) VALUES (?,?,?,?,?)";
-                break;
-            case "Lärare":
-                query =  "INSERT INTO `Teacher`(`Firstname`, `Lastname`, `Username`, `Email`, `Password`) VALUES (?,?,?,?,?)";   
-                break;
-            case "Admin":
-                query =  "INSERT INTO `Admin`(`Entry`,`Firstname`, `Lastname`, `Username`, `Email`, `Password`) VALUES (false,?,?,?,?,?)";
-                break;
-            case "Personal":
-                query =  "INSERT INTO `Staff`(`Firstname`, `Lastname`, `Username`, `Email`, `Password`) VALUES (?,?,?,?,?)";
-                break;
-            default:
-                JOptionPane.showMessageDialog(null, "Fel! Försök igen!");
-                break;
+
+        if (null != title) {
+            switch (title) {
+                case "Student":
+                    query = "INSERT INTO `Student`(`Firstname`, `Lastname`, `Username`, `Email`, `Password`) VALUES (?,?,?,?,?)";
+                    break;
+                case "Lärare":
+                    query = "INSERT INTO `Teacher`(`Firstname`, `Lastname`, `Username`, `Email`, `Password`) VALUES (?,?,?,?,?)";
+                    break;
+                case "Admin":
+                    query = "INSERT INTO `Admin`(`Entry`,`Firstname`, `Lastname`, `Username`, `Email`, `Password`) VALUES (false,?,?,?,?,?)";
+                    break;
+                case "Personal":
+                    query = "INSERT INTO `Staff`(`Firstname`, `Lastname`, `Username`, `Email`, `Password`) VALUES (?,?,?,?,?)";
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(null, "Fel! Försök igen!");
+                    break;
+            }
         }
-        
+
         PreparedStatement ps;
         try {
             ps = MyConnection.getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
@@ -321,7 +322,8 @@ public class RegisterFrame extends javax.swing.JFrame {
             ps.setString(3, username);
             ps.setString(4, email);
             ps.setString(5, password);
-        
+
+
             int update = ps.executeUpdate();
             if (update == 1) {
                 rs = ps.getGeneratedKeys();
@@ -329,9 +331,10 @@ public class RegisterFrame extends javax.swing.JFrame {
                     idStudent = rs.getInt(1);
                     JOptionPane.showMessageDialog(null, "En ny " + title + " har registrerats");
                     reset();
+
                 }
             }
-     
+
         } catch (SQLException ex) {
             Logger.getLogger(RegisterFrame.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -358,6 +361,7 @@ public class RegisterFrame extends javax.swing.JFrame {
         passwordField.setText("");
 
     }
+
     /**
      * @param args the command line arguments
      */
@@ -378,7 +382,7 @@ public class RegisterFrame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(RegisterFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
         //</editor-fold>
 
         /* Create and display the form */
