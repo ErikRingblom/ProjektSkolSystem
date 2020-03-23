@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author rimazivkovic
+ * @author rimazivkovi     
  */
 public class StartFrame extends javax.swing.JFrame {
 
