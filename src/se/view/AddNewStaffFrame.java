@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,6 +20,7 @@ public class AddNewStaffFrame extends javax.swing.JFrame {
     Connection con = null;
     ResultSet rs = null;
     PreparedStatement ps = null;
+ //   AdminFrame adminFrame = new AdminFrame();
 
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public AddNewStaffFrame() {
@@ -111,6 +113,11 @@ public class AddNewStaffFrame extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
         jButton1.setText("Uppdatera");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
         jLabel1.setText("Yrke:");
@@ -168,7 +175,6 @@ public class AddNewStaffFrame extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(professionField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(36, 36, 36)
@@ -256,12 +262,129 @@ public class AddNewStaffFrame extends javax.swing.JFrame {
         String username = uNameField.getText();
         String email = mailField.getText();
         String password = pwField.getText();
-        insert(Profession,firstname, lastname, username, email, password);
+        insert(Profession, firstname, lastname, username, email, password);
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
         this.setVisible(false);
     }//GEN-LAST:event_closeButtonActionPerformed
+//            query = "INSERT INTO `staff`(`Profession`,`Firstname`, `Lastname`, `Username`, `Email`, `Password`) VALUES (?,?,?,?,?,?)";
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+   //     int idSaff = 0;
+    //    DefaultTableModel model = (DefaultTableModel) adminFrame.jTable1.getModel();
+        String updateQuery = null;
+        PreparedStatement ps = null;
+     //   con = MyConnection.getConnection();
+        
+        
+   //    int selection = adminFrame.jTable1.getSelectedRow();
+   //    String click = model.getValueAt(selection, 0).toString();
+
+        updateQuery = "UPDATE staff SET Profession = ?, Firstname = ?, Lastname= ?, Username= ?, Email = ?"
+                + ", Password = ? WHERE idstaff = ?";
+        try {
+            ps = con.prepareStatement(updateQuery);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+
+                ps.setString(1, professionField.getText());
+                ps.setString(2, fNameField.getText());
+                ps.setString(3, lNameField.getText());
+                ps.setString(4, uNameField.getText());
+                ps.setString(5, mailField.getText());
+                ps.setString(6, pwField.getText());
+                rs.close();
+            }
+/*
+            int update = ps.executeUpdate();
+
+            if (update == 1) {
+                rs = ps.getGeneratedKeys();
+                if (rs.next()) {
+                    idSaff = rs.getInt(1);
+                    JOptionPane.showMessageDialog(null, "Update succeded");
+                }
+            }
+        */
+        } catch (SQLException ex) {
+            Logger.getLogger(AddNewStaffFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }finally {
+         try {
+            if (ps != null)
+            con.close();
+         } catch (SQLException ex) {}
+         try {
+            if (con != null)
+            con.close();
+         } catch (SQLException se) {
+            se.printStackTrace();
+         }
+    } 
+        //  ps.executeUpdate();
+        /*    
+      // ---------------------------------------------------version 1-----------------------------------
+
+        try {
+
+            Statement st = con.createStatement();
+            String profession = professionField.getText();
+            String firstName = fNameField.getText();
+            String lastname = lNameField.getText();
+            String username = uNameField.getText();
+            String email = mailField.getText();
+            String password = pwField.getText();
+            String sql = "UPDATE staff SET Profession ='" + profession + "', "
+                                          + "Firstname = '" + firstName + "',"
+                                          + "Lastname = '" + lastname + "'," 
+                                          + "Username = '" + username + "'," 
+                                          + "Email = '" + email + "'," 
+                                          + "Password = '" + password + "',"; 
+                                                          
+            
+            st.executeUpdate(sql);
+            JOptionPane.showMessageDialog(null,"Data is successfully updated");
+
+        } catch (SQLException e) {
+            Logger.getLogger(AddNewStaffFrame.class.getName()).log(Level.SEVERE, null, e);
+               JOptionPane.showMessageDialog(null,"Data failed at update");
+        }
+        
+      // ---------------------------------------------------version 2 -----------------------------------
+
+           String sql = "UPDATE `staff` SET `Profession` = '" + professionField.getText() + "',"
+                + "Firstname = '" + fNameField.getText() + "',"
+                + "Lastname  = '" + lNameField.getText() + "',"
+                + "Username = '" + uNameField.getText() + "',"
+                + "Email = '" + mailField.getText() + "',"
+                + "Password = '" + pwField.getText() + "',";
+
+        try {
+            ps = con.prepareStatement(sql);
+            Statement st = con.createStatement();
+            st.executeUpdate(sql);
+
+            if (rs.next()) {
+                String profession = rs.getString("Profession");
+                professionField.setText(profession);
+                String firstname = rs.getString("Firstname");
+                fNameField.setText(firstname);
+                String lastname = rs.getString("Lastname");
+                lNameField.setText(lastname);
+                String username = rs.getString("Username");
+                uNameField.setText(username);
+                String email = rs.getString("Email");
+                mailField.setText(email);
+                String password = rs.getString("Password");
+                fNameField.setText(password);
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AddNewStaffFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         */
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -321,9 +444,9 @@ public class AddNewStaffFrame extends javax.swing.JFrame {
     public javax.swing.JTextField uNameField;
     // End of variables declaration//GEN-END:variables
 
-    private int insert( String Profession, String firstname, String lastname, String username, String email, String password) {
+    private int insert(String Profession, String firstname, String lastname, String username, String email, String password) {
 
-         int idSaff = 0;
+        int idSaff = 0;
 
         if (firstname.equals("")) {
             JOptionPane.showMessageDialog(null, "Skriv in ditt förnamn!");
@@ -364,6 +487,7 @@ public class AddNewStaffFrame extends javax.swing.JFrame {
             try {
                 if (rs != null) {
                     rs.close();
+                    professionField.setText("");
                     fNameField.setText("");
                     lNameField.setText("");
                     uNameField.setText("");
