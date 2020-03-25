@@ -2,6 +2,12 @@
 package se.view;
 
 import java.awt.Color;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 
 
@@ -11,6 +17,10 @@ import javax.swing.JPanel;
  */
 public class StartFrame extends javax.swing.JFrame {
 
+    Connection con = null;
+    ResultSet rs = null;
+    PreparedStatement ps = null;
+    String query = null;
     /**
      * Creates new form StartFrame
      */
@@ -18,6 +28,7 @@ public class StartFrame extends javax.swing.JFrame {
     public StartFrame() {
         initComponents();
         this.setLocationRelativeTo(null);
+        con = MyConnection.getConnection();
     }
 
     /**
@@ -33,8 +44,8 @@ public class StartFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         iconLabel = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        textArea = new javax.swing.JTextArea();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -81,25 +92,26 @@ public class StartFrame extends javax.swing.JFrame {
 
         iconLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/se/image/girl-3718537_640.jpg"))); // NOI18N
 
-        jTextPane1.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
-        jTextPane1.setForeground(new java.awt.Color(102, 102, 102));
-        jScrollPane2.setViewportView(jTextPane1);
+        textArea.setColumns(20);
+        textArea.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
+        textArea.setRows(5);
+        jScrollPane1.setViewportView(textArea);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addComponent(iconLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 645, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(iconLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane1))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jScrollPane2)
-                    .addComponent(iconLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(iconLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
                 .addGap(0, 68, Short.MAX_VALUE))
         );
 
@@ -155,6 +167,9 @@ public class StartFrame extends javax.swing.JFrame {
         aLabel.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
         aLabel.setText("Våra utbildningar");
         aLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                aLabelMouseClicked(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 aLabelMouseExited(evt);
             }
@@ -167,10 +182,10 @@ public class StartFrame extends javax.swing.JFrame {
         jPanel.setLayout(jPanelLayout);
         jPanelLayout.setHorizontalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
-                .addContainerGap(38, Short.MAX_VALUE)
+            .addGroup(jPanelLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
                 .addComponent(aLabel)
-                .addGap(36, 36, 36))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         jPanelLayout.setVerticalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,7 +211,7 @@ public class StartFrame extends javax.swing.JFrame {
         bPanelLayout.setHorizontalGroup(
             bPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, bPanelLayout.createSequentialGroup()
-                .addContainerGap(37, Short.MAX_VALUE)
+                .addContainerGap(45, Short.MAX_VALUE)
                 .addComponent(bLabel)
                 .addGap(34, 34, 34))
         );
@@ -211,6 +226,9 @@ public class StartFrame extends javax.swing.JFrame {
         cLabel.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
         cLabel.setText("Våra lärare");
         cLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cLabelMouseClicked(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 cLabelMouseExited(evt);
             }
@@ -226,7 +244,7 @@ public class StartFrame extends javax.swing.JFrame {
             .addGroup(cPanelLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(cLabel)
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
         cPanelLayout.setVerticalGroup(
             cPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -252,7 +270,7 @@ public class StartFrame extends javax.swing.JFrame {
         dPanelLayout.setHorizontalGroup(
             dPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dPanelLayout.createSequentialGroup()
-                .addContainerGap(33, Short.MAX_VALUE)
+                .addContainerGap(50, Short.MAX_VALUE)
                 .addComponent(dLabel)
                 .addGap(26, 26, 26))
         );
@@ -282,10 +300,10 @@ public class StartFrame extends javax.swing.JFrame {
         ePanel.setLayout(ePanelLayout);
         ePanelLayout.setHorizontalGroup(
             ePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ePanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(ePanelLayout.createSequentialGroup()
+                .addGap(49, 49, 49)
                 .addComponent(eLabel)
-                .addGap(49, 49, 49))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         ePanelLayout.setVerticalGroup(
             ePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -306,7 +324,8 @@ public class StartFrame extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 24, Short.MAX_VALUE)
                         .addComponent(jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(bPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -315,7 +334,7 @@ public class StartFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(dPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(ePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -339,25 +358,24 @@ public class StartFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void eLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_eLabelMouseClicked
-        jTextPane1.setText("                                      \n"
-                         + "\n                   Kontakt uppgifter\n"
+        textArea.setText("                                        \n"
+                         + "\n                       Kontakt      \n"
                          + "                                      \n"
                          + "                                      \n"
-                         + "             Rektor\n"
-                         + "             Namn: Anton Meck\n"
-                         + "             Email: Anton@gmail.com\n"
-                         + "             Tel: 08-548 99 34 00\n"
+                         + "               Rektor\n"
+                         + "               Namn: Anton Meck\n"
+                         + "               Email: Anton@gmail.com\n"
+                         + "               Tel: 08-548 99 34 00\n"
                          + "                                      \n"
                          + "                                      \n"
-                         + "             Rektor biträde\n"
-                         + "             Namn: Ritva Stig\n"
-                         + "             Email: Ritva@gmail.com\n"
-                         + "             Tel: 08-548 99 34 01\n");
+                         + "               Rektor biträde\n"
+                         + "               Namn: Ritva Stig\n"
+                         + "               Email: Ritva@gmail.com\n"
+                         + "               Tel: 08-548 99 34 01\n");
     }//GEN-LAST:event_eLabelMouseClicked
 
     private void aLabelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aLabelMouseEntered
-               setColor(jPanel);   
-        
+               setColor(jPanel);    
     }//GEN-LAST:event_aLabelMouseEntered
 
     private void aLabelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aLabelMouseExited
@@ -416,6 +434,45 @@ public class StartFrame extends javax.swing.JFrame {
         rf.setVisible(true);
     }//GEN-LAST:event_jLabel4MouseClicked
 
+    private void cLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cLabelMouseClicked
+        textArea.setText("");
+        query = "SELECT Firstname, Lastname, Coursename FROM Teacher "
+                + "INNER JOIN Course ON Teacher.idTeacher = Course.Teacher_idTeacher";
+         try {
+            ps = con.prepareStatement(query);
+            rs = ps.executeQuery();
+
+            textArea.append("\n                    Våra lärare             " + "\n");
+            
+            while(rs.next()){    
+            String firstname = rs.getString("Firstname");
+            String lastname = rs.getString("Lastname");
+            String coursename = rs.getNString("Coursename");
+
+            textArea.append("\n  " + coursename + ": " + firstname + " "+ lastname  + "\n");
+            
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_cLabelMouseClicked
+
+    private void aLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_aLabelMouseClicked
+        textArea.setText("");
+        textArea.setText("\n           Våra utbildningar          " + "\n"
+                       + "                                             \n"
+                       + "  Utbildningar vi erbjuder är utformde för     \n"
+                       + "  att ge stor kunskap samt möjlighet att       \n"
+                       + "  anpassa sig till framtidens arbetsmarknad.   \n"
+                       + "                                             \n"
+                       + "  Vi erbjuder utbildningar och kurser som kan  \n"
+                       + "  förändra och förbättra framtidsutsikt.       \n"
+                       + "                                             \n"   
+                       + "  Väl etablerade kurser med fantastiska pedagoger.");
+        
+    }//GEN-LAST:event_aLabelMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -470,7 +527,7 @@ public class StartFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea textArea;
     // End of variables declaration//GEN-END:variables
 }

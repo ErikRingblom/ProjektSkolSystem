@@ -15,7 +15,7 @@ public class AdminFrame extends javax.swing.JFrame {
     Connection con = null;
     ResultSet rs = null;
     PreparedStatement ps = null;
-    
+
     private String query;
     private String direction;
     private final String date;
@@ -42,7 +42,7 @@ public class AdminFrame extends javax.swing.JFrame {
         this.date = dt.showDate();
         dateLabel.setText(date);
     }
-    
+
     private void getInfo(String person) {
 
         if (student.equals(person)) {
@@ -200,7 +200,7 @@ public class AdminFrame extends javax.swing.JFrame {
                 .addContainerGap(52, Short.MAX_VALUE))
         );
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBackground(new java.awt.Color(255, 102, 0));
 
         newStudentButton.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
         newStudentButton.setText("Lägg till ny student");
@@ -266,7 +266,7 @@ public class AdminFrame extends javax.swing.JFrame {
 
         jPanel3Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {addNewAdminButton, addnewTeacherButton, newStudentButton, staffButton});
 
-        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setBackground(new java.awt.Color(255, 102, 0));
 
         deleteButton.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
         deleteButton.setText("Radera");
@@ -320,7 +320,7 @@ public class AdminFrame extends javax.swing.JFrame {
                 .addGap(52, 52, 52))
         );
 
-        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel5.setBackground(new java.awt.Color(255, 102, 0));
 
         teacherInfoButton.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
         teacherInfoButton.setText("Lärar info");
@@ -532,7 +532,6 @@ public class AdminFrame extends javax.swing.JFrame {
 
                 if (rs.next()) {
                     astf.setVisible(true);
-                    
                     String profession = rs.getNString("Profession");
                     astf.professionField.setText(profession);
 
@@ -613,18 +612,15 @@ public class AdminFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_stuffInfoButtonActionPerformed
 
     private void addnewTeacherButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addnewTeacherButtonActionPerformed
-        AddNewTeacherFrame ant = new AddNewTeacherFrame();
-        ant.setVisible(true);
+          atf.setVisible(true);
     }//GEN-LAST:event_addnewTeacherButtonActionPerformed
 
     private void addNewAdminButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewAdminButtonActionPerformed
-        AddNewAdminFrame ana = new AddNewAdminFrame();
-        ana.setVisible(true);
+         aaf.setVisible(true);
     }//GEN-LAST:event_addNewAdminButtonActionPerformed
 
     private void staffButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_staffButtonActionPerformed
-        AddNewStaffFrame ans = new AddNewStaffFrame();
-        ans.setVisible(true);
+        astf.setVisible(true);
     }//GEN-LAST:event_staffButtonActionPerformed
 
     private void jTable1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseDragged

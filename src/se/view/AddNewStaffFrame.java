@@ -8,7 +8,6 @@ import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,7 +19,6 @@ public class AddNewStaffFrame extends javax.swing.JFrame {
     Connection con = null;
     ResultSet rs = null;
     PreparedStatement ps = null;
- //   AdminFrame adminFrame = new AdminFrame();
 
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public AddNewStaffFrame() {
@@ -52,7 +50,7 @@ public class AddNewStaffFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         addButton = new javax.swing.JButton();
         closeButton = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        updateButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         professionField = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
@@ -111,11 +109,11 @@ public class AddNewStaffFrame extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
-        jButton1.setText("Uppdatera");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        updateButton.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
+        updateButton.setText("Uppdatera");
+        updateButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                updateButtonActionPerformed(evt);
             }
         });
 
@@ -160,11 +158,11 @@ public class AddNewStaffFrame extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)
+                        .addComponent(updateButton)
                         .addGap(82, 82, 82))))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {addButton, closeButton, jButton1});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {addButton, closeButton, updateButton});
 
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,13 +198,13 @@ public class AddNewStaffFrame extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(updateButton))
                 .addGap(18, 18, 18)
                 .addComponent(closeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
         );
 
-        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {addButton, closeButton, jButton1});
+        jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {addButton, closeButton, updateButton});
 
         jPanel2.setBackground(new java.awt.Color(255, 102, 0));
 
@@ -268,123 +266,55 @@ public class AddNewStaffFrame extends javax.swing.JFrame {
     private void closeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeButtonActionPerformed
         this.setVisible(false);
     }//GEN-LAST:event_closeButtonActionPerformed
-//            query = "INSERT INTO `staff`(`Profession`,`Firstname`, `Lastname`, `Username`, `Email`, `Password`) VALUES (?,?,?,?,?,?)";
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-   //     int idSaff = 0;
-    //    DefaultTableModel model = (DefaultTableModel) adminFrame.jTable1.getModel();
-        String updateQuery = null;
-        PreparedStatement ps = null;
-     //   con = MyConnection.getConnection();
+    private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
+          getId();
+    }//GEN-LAST:event_updateButtonActionPerformed
+
+    public int getId(){
         
-        
-   //    int selection = adminFrame.jTable1.getSelectedRow();
-   //    String click = model.getValueAt(selection, 0).toString();
+        int idStaff= 0;
 
-        updateQuery = "UPDATE staff SET Profession = ?, Firstname = ?, Lastname= ?, Username= ?, Email = ?"
-                + ", Password = ? WHERE idstaff = ?";
-        try {
-            ps = con.prepareStatement(updateQuery);
-            rs = ps.executeQuery();
-            if (rs.next()) {
+        String username = uNameField.getText();
+        String password = pwField.getText();
 
-                ps.setString(1, professionField.getText());
-                ps.setString(2, fNameField.getText());
-                ps.setString(3, lNameField.getText());
-                ps.setString(4, uNameField.getText());
-                ps.setString(5, mailField.getText());
-                ps.setString(6, pwField.getText());
-                rs.close();
-            }
-/*
-            int update = ps.executeUpdate();
-
-            if (update == 1) {
-                rs = ps.getGeneratedKeys();
-                if (rs.next()) {
-                    idSaff = rs.getInt(1);
-                    JOptionPane.showMessageDialog(null, "Update succeded");
-                }
-            }
-        */
-        } catch (SQLException ex) {
-            Logger.getLogger(AddNewStaffFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }finally {
-         try {
-            if (ps != null)
-            con.close();
-         } catch (SQLException ex) {}
-         try {
-            if (con != null)
-            con.close();
-         } catch (SQLException se) {
-            se.printStackTrace();
-         }
-    } 
-        //  ps.executeUpdate();
-        /*    
-      // ---------------------------------------------------version 1-----------------------------------
-
-        try {
-
-            Statement st = con.createStatement();
-            String profession = professionField.getText();
-            String firstName = fNameField.getText();
-            String lastname = lNameField.getText();
-            String username = uNameField.getText();
-            String email = mailField.getText();
-            String password = pwField.getText();
-            String sql = "UPDATE staff SET Profession ='" + profession + "', "
-                                          + "Firstname = '" + firstName + "',"
-                                          + "Lastname = '" + lastname + "'," 
-                                          + "Username = '" + username + "'," 
-                                          + "Email = '" + email + "'," 
-                                          + "Password = '" + password + "',"; 
-                                                          
+        if (username != null && password != null) {
+            query = "Select idStaff From Staff Where Username = '" + username + "' and Password = '" + password + "'";
             
-            st.executeUpdate(sql);
-            JOptionPane.showMessageDialog(null,"Data is successfully updated");
+            try {
+                ps = con.prepareStatement(query);
+                rs = ps.executeQuery();
 
-        } catch (SQLException e) {
-            Logger.getLogger(AddNewStaffFrame.class.getName()).log(Level.SEVERE, null, e);
-               JOptionPane.showMessageDialog(null,"Data failed at update");
+                if (rs.next()){
+                    idStaff = rs.getInt(1);
+                    update(idStaff);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(AddNewStaffFrame.class.getName()).log(Level.SEVERE, null, ex);
+            } 
         }
-        
-      // ---------------------------------------------------version 2 -----------------------------------
 
-           String sql = "UPDATE `staff` SET `Profession` = '" + professionField.getText() + "',"
-                + "Firstname = '" + fNameField.getText() + "',"
-                + "Lastname  = '" + lNameField.getText() + "',"
-                + "Username = '" + uNameField.getText() + "',"
-                + "Email = '" + mailField.getText() + "',"
-                + "Password = '" + pwField.getText() + "',";
-
+        return idStaff;
+    }
+    
+    public void update(int idStaff) {
+        JOptionPane.showMessageDialog(null, idStaff);
+        if(idStaff != 0){   
+        query = "Update Staff set Profession ='" + professionField.getText() + "', Firstname ='"
+                + fNameField.getText() + "', Lastname ='" + lNameField.getText() + "', Username ='"
+                + uNameField.getText() + "', Email ='" + mailField.getText() + "', Password ='"
+                + pwField.getText() + "'WHERE idStaff = '" + idStaff + "'";
+        }
         try {
-            ps = con.prepareStatement(sql);
-            Statement st = con.createStatement();
-            st.executeUpdate(sql);
+            ps = con.prepareStatement(query);
+            rs = ps.executeQuery();
 
-            if (rs.next()) {
-                String profession = rs.getString("Profession");
-                professionField.setText(profession);
-                String firstname = rs.getString("Firstname");
-                fNameField.setText(firstname);
-                String lastname = rs.getString("Lastname");
-                lNameField.setText(lastname);
-                String username = rs.getString("Username");
-                uNameField.setText(username);
-                String email = rs.getString("Email");
-                mailField.setText(email);
-                String password = rs.getString("Password");
-                fNameField.setText(password);
+            JOptionPane.showMessageDialog(null, "Updatering lyckades!");
 
-            }
         } catch (SQLException ex) {
             Logger.getLogger(AddNewStaffFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
-         */
-
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }
 
     /**
      * @param args the command line arguments
@@ -426,7 +356,6 @@ public class AddNewStaffFrame extends javax.swing.JFrame {
     private javax.swing.JButton addButton;
     private javax.swing.JButton closeButton;
     public javax.swing.JTextField fNameField;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -442,6 +371,7 @@ public class AddNewStaffFrame extends javax.swing.JFrame {
     public javax.swing.JTextField professionField;
     public javax.swing.JTextField pwField;
     public javax.swing.JTextField uNameField;
+    private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
 
     private int insert(String Profession, String firstname, String lastname, String username, String email, String password) {
