@@ -395,15 +395,15 @@ public class AddNewStudentFrame extends javax.swing.JFrame {
         int idStudent = 0;
       
          if (firstname.equals("")) {
-             JOptionPane.showMessageDialog(null, "Skriv in ditt förnamn!");
+             JOptionPane.showMessageDialog(null, "Skriv in förnamn!");
          } else if (lastname.equals("")) {
-             JOptionPane.showMessageDialog(null, "Skriv in ditt efternamn!");
+             JOptionPane.showMessageDialog(null, "Skriv in efternamn!");
          } else if (username.equals("")) {
-             JOptionPane.showMessageDialog(null, "Skriv in ditt användarnamn!");
+             JOptionPane.showMessageDialog(null, "Skriv in användarnamn!");
          } else if (email.equals("")) {
-             JOptionPane.showMessageDialog(null, "Skriv in ditt email!");
+             JOptionPane.showMessageDialog(null, "Skriv in email!");
          } else if (password.equals("")) {
-             JOptionPane.showMessageDialog(null, "Skriv in ditt lösenord!");
+             JOptionPane.showMessageDialog(null, "Skriv in lösenord!");
          } else {
              query = "INSERT INTO `Student`(`Firstname`, `Lastname`, `Username`, `Email`, `Password`) VALUES (?,?,?,?,?)";
          }

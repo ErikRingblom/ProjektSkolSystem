@@ -532,6 +532,9 @@ public class AdminFrame extends javax.swing.JFrame {
 
                 if (rs.next()) {
                     astf.setVisible(true);
+                    
+                    astf.idField.setText(click);
+                    
                     String profession = rs.getNString("Profession");
                     astf.professionField.setText(profession);
 

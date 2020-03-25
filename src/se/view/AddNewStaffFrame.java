@@ -19,12 +19,15 @@ public class AddNewStaffFrame extends javax.swing.JFrame {
     Connection con = null;
     ResultSet rs = null;
     PreparedStatement ps = null;
+    
 
     @SuppressWarnings("OverridableMethodCallInConstructor")
     public AddNewStaffFrame() {
         initComponents();
         this.setLocationRelativeTo(null);
         con = MyConnection.getConnection();
+        idField.enable(false);
+
     }
 
     /**
@@ -53,6 +56,8 @@ public class AddNewStaffFrame extends javax.swing.JFrame {
         updateButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         professionField = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        idField = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
 
@@ -122,32 +127,32 @@ public class AddNewStaffFrame extends javax.swing.JFrame {
 
         professionField.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
 
+        jLabel6.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
+        jLabel6.setText("ID:");
+
+        idField.setFont(new java.awt.Font("Lucida Grande", 0, 16)); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(110, 110, 110)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(jLabel2))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(110, 110, 110)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel1))
-                        .addGap(31, 31, 31)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lNameField)
-                            .addComponent(fNameField)
-                            .addComponent(mailField)
-                            .addComponent(pwField)
-                            .addComponent(uNameField)
-                            .addComponent(professionField, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel1))
+                .addGap(31, 31, 31)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lNameField)
+                    .addComponent(fNameField)
+                    .addComponent(mailField)
+                    .addComponent(pwField)
+                    .addComponent(uNameField)
+                    .addComponent(professionField, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(89, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -160,6 +165,14 @@ public class AddNewStaffFrame extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(updateButton)
                         .addGap(82, 82, 82))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(45, 45, 45)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(98, 98, 98))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {addButton, closeButton, updateButton});
@@ -168,8 +181,11 @@ public class AddNewStaffFrame extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel6)
+                    .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(professionField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
@@ -253,7 +269,6 @@ public class AddNewStaffFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_uNameFieldActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        //insert();
         String Profession = professionField.getText();
         String firstname = fNameField.getText();
         String lastname = lNameField.getText();
@@ -268,112 +283,37 @@ public class AddNewStaffFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_closeButtonActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-          getId();
+          update();
     }//GEN-LAST:event_updateButtonActionPerformed
 
-    public int getId(){
+    public void update() {
         
-        int idStaff= 0;
+        String idStaff = idField.getText();
 
-        String username = uNameField.getText();
-        String password = pwField.getText();
-
-        if (username != null && password != null) {
-            query = "Select idStaff From Staff Where Username = '" + username + "' and Password = '" + password + "'";
+        
+        if (idField.getText().isEmpty()){
+             
+                JOptionPane.showMessageDialog(null, "Updatering misslyckades!");
+                reset();
+        }else{
+            query = "Update Staff set Profession ='" + professionField.getText() + "', Firstname ='"
+                    + fNameField.getText() + "', Lastname ='" + lNameField.getText() + "', Username ='"
+                    + uNameField.getText() + "', Email ='" + mailField.getText() + "', Password ='"
+                    + pwField.getText() + "' WHERE idStaff = '" + idStaff + "'";
             
             try {
                 ps = con.prepareStatement(query);
-                rs = ps.executeQuery();
-
-                if (rs.next()){
-                    idStaff = rs.getInt(1);
-                    update(idStaff);
-                }
+                ps.executeUpdate();
+                
+                JOptionPane.showMessageDialog(null, "Updatering lyckades!");
+                reset();
             } catch (SQLException ex) {
                 Logger.getLogger(AddNewStaffFrame.class.getName()).log(Level.SEVERE, null, ex);
-            } 
+            }
         }
-
-        return idStaff;
     }
     
-    public void update(int idStaff) {
-        JOptionPane.showMessageDialog(null, idStaff);
-        if(idStaff != 0){   
-        query = "Update Staff set Profession ='" + professionField.getText() + "', Firstname ='"
-                + fNameField.getText() + "', Lastname ='" + lNameField.getText() + "', Username ='"
-                + uNameField.getText() + "', Email ='" + mailField.getText() + "', Password ='"
-                + pwField.getText() + "'WHERE idStaff = '" + idStaff + "'";
-        }
-        try {
-            ps = con.prepareStatement(query);
-            rs = ps.executeQuery();
-
-            JOptionPane.showMessageDialog(null, "Updatering lyckades!");
-
-        } catch (SQLException ex) {
-            Logger.getLogger(AddNewStaffFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AddNewStaffFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AddNewStaffFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AddNewStaffFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AddNewStaffFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AddNewStaffFrame().setVisible(true);
-            }
-        });
-    }
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addButton;
-    private javax.swing.JButton closeButton;
-    public javax.swing.JTextField fNameField;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    public javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    public javax.swing.JTextField lNameField;
-    public javax.swing.JTextField mailField;
-    public javax.swing.JTextField professionField;
-    public javax.swing.JTextField pwField;
-    public javax.swing.JTextField uNameField;
-    private javax.swing.JButton updateButton;
-    // End of variables declaration//GEN-END:variables
-
+    
     private int insert(String Profession, String firstname, String lastname, String username, String email, String password) {
 
         int idSaff = 0;
@@ -417,12 +357,7 @@ public class AddNewStaffFrame extends javax.swing.JFrame {
             try {
                 if (rs != null) {
                     rs.close();
-                    professionField.setText("");
-                    fNameField.setText("");
-                    lNameField.setText("");
-                    uNameField.setText("");
-                    mailField.setText("");
-                    pwField.setText("");
+                    reset();
                 }
             } catch (SQLException e) {
                 System.out.println(e.getMessage());
@@ -430,4 +365,77 @@ public class AddNewStaffFrame extends javax.swing.JFrame {
         }
         return idSaff;
     }
+    
+    private void reset() {
+        
+        professionField.setText("");
+        fNameField.setText("");
+        lNameField.setText("");
+        uNameField.setText("");
+        mailField.setText("");
+        pwField.setText("");
+
+    }
+  
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(AddNewStaffFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(AddNewStaffFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(AddNewStaffFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(AddNewStaffFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new AddNewStaffFrame().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addButton;
+    private javax.swing.JButton closeButton;
+    public javax.swing.JTextField fNameField;
+    public javax.swing.JTextField idField;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    public javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    public javax.swing.JTextField lNameField;
+    public javax.swing.JTextField mailField;
+    public javax.swing.JTextField professionField;
+    public javax.swing.JTextField pwField;
+    public javax.swing.JTextField uNameField;
+    private javax.swing.JButton updateButton;
+    // End of variables declaration//GEN-END:variables
+
+    
 }
