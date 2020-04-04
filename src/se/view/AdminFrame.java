@@ -431,14 +431,18 @@ public class AdminFrame extends javax.swing.JFrame {
 
         if (student.equals(direction)) {
             query = "select * from Student where idStudent = " + click;
-
+             asf.getInfo(click);
             try {
                 ps = con.prepareStatement(query);
                 rs = ps.executeQuery();
+               
 
                 if (rs.next()) {
                     asf.setVisible(true);
-
+                   
+                    
+                    asf.jtxtID.setText(click);
+                    
                     String firstname = rs.getString("Firstname");
                     asf.fNameField.setText(firstname);
 
@@ -453,7 +457,8 @@ public class AdminFrame extends javax.swing.JFrame {
 
                     String password = rs.getNString("password");
                     asf.pwField.setText(password);
-                    rs.close();
+                    
+                    
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(AdminFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -462,13 +467,15 @@ public class AdminFrame extends javax.swing.JFrame {
 
         } else if (teacher.equals(direction)) {
             query = "select * from Teacher where idTeacher = " + click;
-
+            atf.getInfo(click);
             try {
                 ps = con.prepareStatement(query);
                 rs = ps.executeQuery();
 
                 if (rs.next()) {
                     atf.setVisible(true);
+                    atf.jtxtID.setText(click);
+
 
                     String firstname = rs.getString("Firstname");
                     atf.fNameField.setText(firstname);
@@ -499,7 +506,7 @@ public class AdminFrame extends javax.swing.JFrame {
 
                 if (rs.next()) {
                     aaf.setVisible(true);
-
+                    
                     String firstname = rs.getString("Firstname");
                     aaf.fNameField.setText(firstname);
 
